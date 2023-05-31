@@ -6,6 +6,19 @@ using UnityEngine.Events;
 [CreateAssetMenu(fileName ="NovasInformacoesPlayer",menuName ="ScriptableObjectsCustomizados/InformacoesPlayer")]
 public class InformacoesPlayer : ScriptableObject
 {
+     [Header("Comidas")]
+    [SerializeField]
+    private bool batataDoce=false;
+    public float bonusVelBatataDoce=2;
+    [SerializeField]
+    private bool coxaDeFrango=false;
+
+    [SerializeField]
+    private bool abacate=false;
+    [SerializeField]
+    private bool laranja=false;
+    [SerializeField]
+    private bool milho=false;
     [SerializeField]
     private float vidaMaxima=100;
     [SerializeField]
@@ -18,6 +31,11 @@ public class InformacoesPlayer : ScriptableObject
     public float GetPorcentagemDeVida=>Mathf.Clamp(vidaAtual/vidaMaxima,0f,100f);
     public float GetVidaAtual=>Mathf.Clamp(vidaAtual,0,vidaMaxima);
     public float GetVidaMaxima=>vidaMaxima;
+
+    public void setBatataDoce(bool novoValor)
+    {
+        batataDoce=novoValor;
+    }
 
     public void EncherVida()
     {
@@ -48,4 +66,9 @@ public class InformacoesPlayer : ScriptableObject
             EventosMorte.Invoke();
         }
     }
+        public bool getBatataDoce=>batataDoce;
+        public bool getCoxaDeFrango=>coxaDeFrango;
+        public bool getAbacate=>abacate;
+        public bool getLaranja=>laranja;
+        public bool getMilho=>milho;
 }

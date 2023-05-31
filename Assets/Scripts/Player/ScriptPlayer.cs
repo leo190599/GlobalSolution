@@ -17,6 +17,7 @@ public class ScriptPlayer : MonoBehaviour
     private float perdaDeMovimentoNoAr=0f;
     [SerializeField]
     private float vidaCuradaPorColisaoParticula=1;
+   
 
     [Header("Parametros Debug")]
     [SerializeField]
@@ -46,7 +47,13 @@ public class ScriptPlayer : MonoBehaviour
     private Rigidbody2D rb;
     [SerializeField]
     private CapsuleCollider2D col;
-    
+
+    public MaquinaDeVendas maquinaDeVendas;
+
+    void Awake()
+    {
+        informacoesPlayer.setBatataDoce(false);
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -59,6 +66,8 @@ public class ScriptPlayer : MonoBehaviour
 
         estadoPlayerAtual=new EstadoIdlePlayer();
         estadoPlayerAtual.IniciarEstadoPlayer(this);
+
+        
     }
 
     // Update is called once per frame
@@ -87,6 +96,7 @@ public class ScriptPlayer : MonoBehaviour
             }
         }
         //Mudar depois
+        
         
         if(Input.GetKeyDown(KeyCode.W))
         {
@@ -142,6 +152,20 @@ public class ScriptPlayer : MonoBehaviour
         informacoesPlayer.EventosMorte-=Morrer;
     }
 
+    public void comprarComida(int comida)
+    {
+        if(maquinaDeVendas!=null)
+        {
+            switch(comida)
+            {
+                case 0:
+                    informacoesPlayer.setBatataDoce(true);
+                break;
+            }
+            Debug.Log(comida);
+        }
+    }
+
     public void ReceberDano(float quantidadeDeDano)
     {
         informacoesPlayer.ReceberDano(quantidadeDeDano);
@@ -177,6 +201,8 @@ public class ScriptPlayer : MonoBehaviour
             this.olhandoParaDireita=false;
         }
     }
+   
+    public InformacoesPlayer GetInformacoesPlayer=>informacoesPlayer;
     public PhysicsMaterial2D GetMaterialFisicoParado=> materialFisicoParado;
     public PhysicsMaterial2D GetMaterialFisicoAndando=>materialFisicoAndando;
     public MapeadorDeBotoes GetMapeadorDeBotoes=>mapeadorDeBotoes;

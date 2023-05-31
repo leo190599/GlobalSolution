@@ -11,6 +11,7 @@ public class MapeadorDeBotoes : ScriptableObject
    private KeyCode botaoPulo=KeyCode.Space;
    [SerializeField]
    private KeyCode botaoPause=KeyCode.Escape;
+   public KeyCode botaoDeInterassao=KeyCode.UpArrow;
 
    public string GetEixoDeMovimentoHorizontal=>eixoDeMovimentoHorizontal;
    public KeyCode GetBotaoPulo=>botaoPulo;

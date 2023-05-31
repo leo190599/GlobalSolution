@@ -12,5 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c0a6c6d9ab204140a96ff2beed95f0f, type: 3}
   m_Name: InformacoesPlayrPadrao
   m_EditorClassIdentifier: 
+  batataDoce: 1
+  bonusVelBatataDoce: 2
+  coxaDeFrango: 0
+  abacate: 0
+  laranja: 0
+  milho: 0
   vidaMaxima: 100
   vidaAtual: 100

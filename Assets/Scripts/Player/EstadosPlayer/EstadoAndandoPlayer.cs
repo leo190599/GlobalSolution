@@ -7,7 +7,9 @@ public class EstadoAndandoPlayer : EstadoAtivoBasePlayer
     public override void IniciarEstadoPlayer(ScriptPlayer player)
     {
         base.IniciarEstadoPlayer(player);
-         player.GetRigidbody2D.velocity=new Vector2(Input.GetAxis(player.GetMapeadorDeBotoes.GetEixoDeMovimentoHorizontal)*player.GetVelocidadeDeMovimento,player.GetRigidbody2D.velocity.y);
+         player.GetRigidbody2D.velocity=new Vector2(Input.GetAxis(player.GetMapeadorDeBotoes.GetEixoDeMovimentoHorizontal)*(player.GetVelocidadeDeMovimento+
+         (player.GetInformacoesPlayer.getBatataDoce ? player.GetInformacoesPlayer.bonusVelBatataDoce:0))
+         ,player.GetRigidbody2D.velocity.y);
         player.GetRigidbody2D.sharedMaterial=player.GetMaterialFisicoAndando;
     }
     public override void AtualizarEstado()
@@ -16,7 +18,9 @@ public class EstadoAndandoPlayer : EstadoAtivoBasePlayer
         if(Input.GetAxisRaw(player.GetMapeadorDeBotoes.GetEixoDeMovimentoHorizontal)!=0)
         {
             player.RodarPersonagem(Mathf.Sign(Input.GetAxisRaw(player.GetMapeadorDeBotoes.GetEixoDeMovimentoHorizontal))>0);
-            player.GetRigidbody2D.velocity=new Vector2(Input.GetAxis(player.GetMapeadorDeBotoes.GetEixoDeMovimentoHorizontal)*player.GetVelocidadeDeMovimento,player.GetRigidbody2D.velocity.y);
+             player.GetRigidbody2D.velocity=new Vector2(Input.GetAxis(player.GetMapeadorDeBotoes.GetEixoDeMovimentoHorizontal)*(player.GetVelocidadeDeMovimento+
+         (player.GetInformacoesPlayer.getBatataDoce ? player.GetInformacoesPlayer.bonusVelBatataDoce:0))
+         ,player.GetRigidbody2D.velocity.y);
         }
         else
         {
@@ -29,5 +33,8 @@ public class EstadoAndandoPlayer : EstadoAtivoBasePlayer
             player.TrocaEstadoPlayer(new EstadoPuloPlayer());
             return;
         }
+
+
+        Debug.Log(player.GetRigidbody2D.velocity.x);
     }
 }
