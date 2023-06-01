@@ -9,6 +9,7 @@ public class EstadoIdlePlayer : EstadoAtivoBasePlayer
     {
         base.IniciarEstadoPlayer(player);
         //player.GetRigidbody2D.velocity=new Vector2(0,player.GetRigidbody2D.velocity.y);
+        player.trocarEstadoAnimator(ScriptPlayer.estadoAnimator.idle);
         player.GetRigidbody2D.sharedMaterial=player.GetMaterialFisicoParado;
     }
     public override void AtualizarEstado()
@@ -23,6 +24,10 @@ public class EstadoIdlePlayer : EstadoAtivoBasePlayer
         if(Input.GetAxisRaw(player.GetMapeadorDeBotoes.GetEixoDeMovimentoHorizontal)!=0)
         {
             player.TrocaEstadoPlayer(new EstadoAndandoPlayer());
+        }
+        if(Input.GetKeyDown(player.GetMapeadorDeBotoes.GetBotaoAtque))
+        {
+            player.TrocaEstadoPlayer(new EstadoAtaquePlayer());
         }
     }
 }

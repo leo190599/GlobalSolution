@@ -6,6 +6,7 @@ public class EstadoAndandoPlayer : EstadoAtivoBasePlayer
 {
     public override void IniciarEstadoPlayer(ScriptPlayer player)
     {
+        player.trocarEstadoAnimator(ScriptPlayer.estadoAnimator.andando);
         base.IniciarEstadoPlayer(player);
          player.GetRigidbody2D.velocity=new Vector2(Input.GetAxis(player.GetMapeadorDeBotoes.GetEixoDeMovimentoHorizontal)*(player.GetVelocidadeDeMovimento+
          (player.GetInformacoesPlayer.getBatataDoce ? player.GetInformacoesPlayer.bonusVelBatataDoce:0))
@@ -33,8 +34,17 @@ public class EstadoAndandoPlayer : EstadoAtivoBasePlayer
             player.TrocaEstadoPlayer(new EstadoPuloPlayer());
             return;
         }
-
+        if(Input.GetKeyDown(player.GetMapeadorDeBotoes.GetBotaoAtque))
+        {
+            player.TrocaEstadoPlayer(new EstadoAtaquePlayer());
+        }
 
        // Debug.Log(player.GetRigidbody2D.velocity.x);
+    }
+
+    public override void FinalizarEstado()
+    {
+        base.FinalizarEstado();
+        player.trocarEstadoAnimator(ScriptPlayer.estadoAnimator.idle);
     }
 }

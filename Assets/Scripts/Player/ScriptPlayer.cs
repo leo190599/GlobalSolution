@@ -18,6 +18,8 @@ public class ScriptPlayer : MonoBehaviour
     [SerializeField]
     private float vidaCuradaPorColisaoParticula=1;
    
+    public Vector2 centroColisaoHitEmRelacaoAoPlayer;
+    public Vector2 dimensoesColisaoHit;
 
     [Header("Parametros Debug")]
     [SerializeField]
@@ -48,7 +50,15 @@ public class ScriptPlayer : MonoBehaviour
     [SerializeField]
     private CapsuleCollider2D col;
 
+    public Animator anim;
     public MaquinaDeVendas maquinaDeVendas;
+
+    public enum estadoAnimator
+    {
+        idle=0,
+        andando=1,
+        hit=2
+    }
 
     void Awake()
     {
@@ -102,11 +112,11 @@ public class ScriptPlayer : MonoBehaviour
         
         if(Input.GetKeyDown(KeyCode.W))
         {
-            informacoesPlayer.ReceberDano(10);
+            //informacoesPlayer.ReceberDano(10);
         }
         if(Input.GetKeyDown(KeyCode.E))
         {
-            informacoesPlayer.Curar(10);
+            //informacoesPlayer.Curar(10);
         }
         //Debug.Log(estadoPlayerAtual);
     }
@@ -143,8 +153,38 @@ public class ScriptPlayer : MonoBehaviour
     void OnDrawGizmosSelected()
     {
        // Gizmos.DrawLine(col.bounds.center,new Vector3(col.bounds.center.x,col.bounds.min.y-distanciaChecagemPulo,col.bounds.min.z));
+       if(olhandoParaDireita)
+       {
+            Gizmos.DrawWireCube(new Vector2(transform.position.x+centroColisaoHitEmRelacaoAoPlayer.x,transform.position.y+centroColisaoHitEmRelacaoAoPlayer.y),dimensoesColisaoHit);
+       }
+       else
+       {
+            Gizmos.DrawWireCube(new Vector2(transform.position.x-centroColisaoHitEmRelacaoAoPlayer.x,transform.position.y+centroColisaoHitEmRelacaoAoPlayer.y),dimensoesColisaoHit);
+       }
     }
 
+    public void Atacar()
+    {
+
+    }
+
+    public void trocarEstadoAnimator(estadoAnimator novoEstado)
+    {
+        int proximoEstado=0;
+        switch(novoEstado)
+        {
+            case estadoAnimator.idle:
+                proximoEstado=0;
+            break;
+            case estadoAnimator.andando:
+                proximoEstado=1;
+            break;
+            case estadoAnimator.hit:
+                proximoEstado=2;
+            break;
+        }
+        anim.SetInteger("Estado",proximoEstado);
+    }
     void OnEnable()
     {
         informacoesPlayer.EventosMorte+=Morrer;
@@ -178,6 +218,19 @@ public class ScriptPlayer : MonoBehaviour
             }
            // Debug.Log(comida);
         }
+    }
+
+    public void AtivarEventoInicioAnimacao()
+    {
+        estadoPlayerAtual.EventoInicioAnimacao();
+    }
+    public void AtivarEventoAnimacao()
+    {
+        estadoPlayerAtual.EventoAnimacao();
+    }
+    public void AtivarEventoFinalAnimacao()
+    {
+        estadoPlayerAtual.EventoFinalAnimacao();
     }
 
     public void ReceberDano(float quantidadeDeDano)

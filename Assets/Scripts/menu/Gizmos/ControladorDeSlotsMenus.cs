@@ -33,6 +33,6 @@ public class ControladorDeSlotsMenus : MonoBehaviour
                 slots[i].color=Color.black;
             }
         }
-        Debug.Log("a");
+       // Debug.Log("a");
     }
 }
