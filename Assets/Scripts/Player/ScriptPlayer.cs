@@ -52,7 +52,7 @@ public class ScriptPlayer : MonoBehaviour
 
     void Awake()
     {
-        informacoesPlayer.setBatataDoce(false);
+        informacoesPlayer.ZerarAlimentos();
     }
     // Start is called before the first frame update
     void Start()
@@ -63,8 +63,10 @@ public class ScriptPlayer : MonoBehaviour
         rb=GetComponent<Rigidbody2D>();
         col=GetComponent<CapsuleCollider2D>();
 
+        informacoesPlayer.reiniciarSlots();
 
         estadoPlayerAtual=new EstadoIdlePlayer();
+
         estadoPlayerAtual.IniciarEstadoPlayer(this);
 
         
@@ -161,8 +163,20 @@ public class ScriptPlayer : MonoBehaviour
                 case 0:
                     informacoesPlayer.setBatataDoce(true);
                 break;
+                case 1:
+                    informacoesPlayer.setCoxaDeFrango(true);
+                break;
+                case 2:
+                    informacoesPlayer.setAbacte(true);
+                break;
+                case 3:
+                    informacoesPlayer.setLaranja(true);
+                break;
+                case 4:
+                    informacoesPlayer.setMilho(true);
+                break;
             }
-            Debug.Log(comida);
+           // Debug.Log(comida);
         }
     }
 

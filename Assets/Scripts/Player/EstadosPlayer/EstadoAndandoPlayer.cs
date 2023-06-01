@@ -35,6 +35,6 @@ public class EstadoAndandoPlayer : EstadoAtivoBasePlayer
         }
 
 
-        Debug.Log(player.GetRigidbody2D.velocity.x);
+       // Debug.Log(player.GetRigidbody2D.velocity.x);
     }
 }
