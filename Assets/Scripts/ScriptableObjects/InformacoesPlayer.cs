@@ -23,11 +23,29 @@ public class InformacoesPlayer : ScriptableObject
     private float vidaMaxima=100;
     [SerializeField]
     private float vidaAtual=100;
+    [Header("Status")]
+    
+    public float forcaBase=5;
 
+    public float forcaCochaDeFrango=8;
+    public float forca=5;
+    public float defesaBase=5;
+    public float defesaLaranja=8;
+    public float defesa=5;
+
+
+
+    [Header("Abacate")]
+    public float vidaBase=100;
+    public float vidaIncrementada=150;
+
+    [Header("Inventario")]
     public int indexSlot=0;
     public int[] slots;
 
     public UnityAction EventosAtualizacaoSlots;
+
+    public UnityAction EventosAbacte;
     public UnityAction EventosLevarDano;
     public UnityAction EventosCura;
     public UnityAction EventosMorte;
@@ -51,6 +69,11 @@ public class InformacoesPlayer : ScriptableObject
         batataDoce=false;
         coxaDeFrango=false;
         abacate=false;
+        //aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+        forca=forcaBase;
+        defesa=defesaBase;
+        vidaMaxima=vidaBase;
+
         laranja=false;
         milho=false;
     }
@@ -70,6 +93,10 @@ public class InformacoesPlayer : ScriptableObject
         if(indexSlot<slots.Length)
         {
             coxaDeFrango=novoValor;
+            if(novoValor)
+            {
+                forca=forcaCochaDeFrango;
+            }
             slots[indexSlot]=1;
             EventosAtualizacaoSlots.Invoke();
             indexSlot++;
@@ -82,6 +109,11 @@ public class InformacoesPlayer : ScriptableObject
             abacate=novoValor;
             slots[indexSlot]=2;
             EventosAtualizacaoSlots.Invoke();
+            if(novoValor && EventosAbacte!=null)
+            {
+                vidaMaxima=vidaIncrementada;
+                EventosAbacte.Invoke();
+            }
             indexSlot++;
         }
     }
@@ -90,6 +122,10 @@ public class InformacoesPlayer : ScriptableObject
          if(indexSlot<slots.Length)
         {
             laranja=novoValor;
+            if(novoValor)
+            {
+                defesa=defesaLaranja;
+            }
             slots[indexSlot]=3;
             EventosAtualizacaoSlots.Invoke();
             indexSlot++;

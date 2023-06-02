@@ -112,11 +112,11 @@ public class ScriptPlayer : MonoBehaviour
         
         if(Input.GetKeyDown(KeyCode.W))
         {
-            //informacoesPlayer.ReceberDano(10);
+            informacoesPlayer.ReceberDano(10);
         }
         if(Input.GetKeyDown(KeyCode.E))
         {
-            //informacoesPlayer.Curar(10);
+            informacoesPlayer.Curar(10);
         }
         //Debug.Log(estadoPlayerAtual);
     }
