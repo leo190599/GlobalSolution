@@ -57,7 +57,8 @@ public class ScriptPlayer : MonoBehaviour
     {
         idle=0,
         andando=1,
-        hit=2
+        hit=2,
+        caindo=3
     }
 
     void Awake()
@@ -190,6 +191,9 @@ public class ScriptPlayer : MonoBehaviour
             break;
             case estadoAnimator.hit:
                 proximoEstado=2;
+            break;
+            case estadoAnimator.caindo:
+                proximoEstado=3;
             break;
         }
         anim.SetInteger("Estado",proximoEstado);

@@ -85,12 +85,12 @@ public class ControladorBotoesAlimentosSaudaveis : MonoBehaviour
         if (informacoesPlayer.getRefrigerante)
         {
             botaoRefrigerante.interactable=false;
-            labelLaranja.SetActive(false);
+            labelRefrigerante.SetActive(false);
         }
         else
         {
             botaoRefrigerante.interactable=true;
-            labelLaranja.SetActive(true);
+            labelRefrigerante.SetActive(true);
         }
         if(informacoesPlayer.getHamburger)
         {

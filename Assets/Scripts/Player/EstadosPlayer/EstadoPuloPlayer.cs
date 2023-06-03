@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class EstadoPuloPlayer : EstadoNoArBasePlayer
 {
+    public override void IniciarEstadoPlayer(ScriptPlayer player)
+    {
+        base.IniciarEstadoPlayer(player);
+        player.trocarEstadoAnimator(ScriptPlayer.estadoAnimator.caindo);
+    }
     public override void AtualizarEstadoFixado()
     {
         base.AtualizarEstadoFixado();
@@ -33,5 +38,10 @@ public class EstadoPuloPlayer : EstadoNoArBasePlayer
             }
         }
         player.GetRaycastsPulo.Clear();
+    }
+    public override void FinalizarEstado()
+    {
+        base.FinalizarEstado();
+        player.trocarEstadoAnimator(ScriptPlayer.estadoAnimator.idle);
     }
 }

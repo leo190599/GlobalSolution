@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class ControladorDeSlotsMenus : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -9,6 +10,8 @@ public class ControladorDeSlotsMenus : MonoBehaviour
     public Image[] slots;
 
     public Color[] cores;
+    public Sprite imagemPadrao;
+    public Sprite[] imagens;
     void OnEnable()
     {
         //Debug.Log("a");
@@ -22,6 +25,7 @@ public class ControladorDeSlotsMenus : MonoBehaviour
     }
     public void AtualizarSlots()
     {
+        /*
         for(int i=0;i<informacoesPlayer.slots.Length;i++)
         {
             if(!informacoesPlayer.slots.GetValue(i).Equals(-1))
@@ -32,6 +36,21 @@ public class ControladorDeSlotsMenus : MonoBehaviour
             else
             {
                 slots[i].color=Color.black;
+            }
+        }
+        */
+
+
+         for(int i=0;i<informacoesPlayer.slots.Length;i++)
+        {
+            if(!informacoesPlayer.slots.GetValue(i).Equals(-1))
+            {
+                slots[i].sprite=imagens[informacoesPlayer.slots[i]];
+                //Debug.Log(informacoesPlayer.slots[i]);
+            }
+            else
+            {
+                slots[i].sprite=imagemPadrao;
             }
         }
        // Debug.Log("a");

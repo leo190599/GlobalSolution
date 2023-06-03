@@ -23,6 +23,8 @@ public class InimigoScript : MonoBehaviour
     public float novaPosicaoX;
     public estadoInimigo estado;
     public ScriptPlayer alvo;
+    public SpriteRenderer sprite;
+    public Animator anim;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +40,7 @@ public class InimigoScript : MonoBehaviour
             case estadoInimigo.patrulhando:
                 if(olhandoParaADireita)
                 {
+                    sprite.flipX=true;
                     novaPosicaoX=transform.position.x+vel*Time.deltaTime;
 
                     if(novaPosicaoX>areaDePatrulha.bounds.max.x)
@@ -55,6 +58,7 @@ public class InimigoScript : MonoBehaviour
                 }
                 else
                 {
+                    sprite.flipX=false;
                     novaPosicaoX=transform.position.x-vel*Time.deltaTime;
 
                     if(novaPosicaoX<areaDePatrulha.bounds.min.x)
@@ -73,6 +77,8 @@ public class InimigoScript : MonoBehaviour
             case estadoInimigo.perseguindo:
 
                     novaPosicaoX=transform.position.x+Mathf.Sign(alvo.gameObject.transform.position.x-transform.position.x)*vel*Time.deltaTime;
+
+                    sprite.flipX=novaPosicaoX>transform.position.x?true:false;
 
                     novaPosicaoX= Mathf.Clamp(novaPosicaoX,
                     areaDePatrulha.bounds.min.x,
