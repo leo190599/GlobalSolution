@@ -19,10 +19,20 @@ public class InformacoesPlayer : ScriptableObject
     private bool laranja=false;
     [SerializeField]
     private bool milho=false;
+    public float forcaPuloMilho=2;
     [SerializeField]
     private float vidaMaxima=100;
     [SerializeField]
     private float vidaAtual=100;
+    [SerializeField]
+    private bool refrigerante=false;
+    [SerializeField]
+    private bool hamburger=false;
+    [SerializeField]
+    private bool salgadinho=false;
+    [SerializeField]
+    private bool bolo=false;
+
     [Header("Status")]
     
     public float forcaBase=5;
@@ -76,6 +86,10 @@ public class InformacoesPlayer : ScriptableObject
 
         laranja=false;
         milho=false;
+        refrigerante=false;
+        hamburger=false;
+        salgadinho=false;
+        bolo=false;
     }
     public void setBatataDoce(bool novoValor)
     {
@@ -141,6 +155,46 @@ public class InformacoesPlayer : ScriptableObject
             indexSlot++;
         }
     }
+    public void setRefrigerante(bool novoValor)
+    {
+        if(indexSlot<slots.Length)
+        {
+            refrigerante=novoValor;
+            slots[indexSlot]=5;
+            EventosAtualizacaoSlots.Invoke();
+            indexSlot++;
+        }
+    }
+    public void setHamburger(bool novoValor)
+    {
+        if(indexSlot<slots.Length)
+        {
+            hamburger=novoValor;
+            slots[indexSlot]=6;
+            EventosAtualizacaoSlots.Invoke();
+            indexSlot++;
+        }   
+    }
+    public void setSalgadinho(bool novoValor)
+    {
+        if(indexSlot<slots.Length)
+        {
+            salgadinho=novoValor;
+            slots[indexSlot]=7;
+            EventosAtualizacaoSlots.Invoke();
+            indexSlot++;
+        }   
+    }
+    public void setBolo(bool novoValor)
+    {
+        if(indexSlot<slots.Length)
+        {
+            bolo=novoValor;
+            slots[indexSlot]=8;
+            EventosAtualizacaoSlots.Invoke();
+            indexSlot++;
+        }   
+    }
 
     public void reiniciarSlots()
     {
@@ -185,4 +239,8 @@ public class InformacoesPlayer : ScriptableObject
         public bool getAbacate=>abacate;
         public bool getLaranja=>laranja;
         public bool getMilho=>milho;
+        public bool getRefrigerante=>refrigerante;
+        public bool getHamburger=>hamburger;
+        public bool getSalgadinho=>salgadinho;
+        public bool getBolo=>bolo;
 }

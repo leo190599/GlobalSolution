@@ -17,8 +17,17 @@ MonoBehaviour:
   coxaDeFrango: 0
   abacate: 0
   laranja: 0
-  milho: 0
+  milho: 1
+  forcaPuloMilho: 10
   vidaMaxima: 100
   vidaAtual: 100
-  indexSlot: 0
-  slots: ffffffffffffffffffffffffffffffffffffffff
+  forcaBase: 5
+  forcaCochaDeFrango: 8
+  forca: 5
+  defesaBase: 5
+  defesaLaranja: 8
+  defesa: 5
+  vidaBase: 100
+  vidaIncrementada: 150
+  indexSlot: 1
+  slots: 04000000ffffffffffffffffffffffffffffffff

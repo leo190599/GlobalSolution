@@ -168,6 +168,15 @@ public class ScriptPlayer : MonoBehaviour
 
     }
 
+    public void Despausar()
+    {
+        controldadorDeCenaPlayer.TrocarEstadoAtual(ControladorDeCena.TipoEstadoCena.jogando);
+    }
+    public void VoltarAOMenuPrincipal()
+    {
+        SceneManager.LoadScene(0);
+    }
+
     public void trocarEstadoAnimator(estadoAnimator novoEstado)
     {
         int proximoEstado=0;
@@ -214,6 +223,18 @@ public class ScriptPlayer : MonoBehaviour
                 break;
                 case 4:
                     informacoesPlayer.setMilho(true);
+                break;
+                case 5:
+                    informacoesPlayer.setRefrigerante(true);
+                break;
+                case 6:
+                    informacoesPlayer.setHamburger(true);
+                break;
+                case 7:
+                    informacoesPlayer.setSalgadinho(true);
+                break;
+                case 8:
+                    informacoesPlayer.setBolo(true);
                 break;
             }
            // Debug.Log(comida);

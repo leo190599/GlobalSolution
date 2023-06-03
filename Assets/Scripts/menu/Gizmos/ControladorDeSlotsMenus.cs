@@ -27,6 +27,7 @@ public class ControladorDeSlotsMenus : MonoBehaviour
             if(!informacoesPlayer.slots.GetValue(i).Equals(-1))
             {
                 slots[i].color=cores[informacoesPlayer.slots[i]];
+                Debug.Log(informacoesPlayer.slots[i]);
             }
             else
             {

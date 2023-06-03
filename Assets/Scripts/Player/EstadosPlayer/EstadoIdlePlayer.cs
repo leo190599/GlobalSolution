@@ -17,7 +17,7 @@ public class EstadoIdlePlayer : EstadoAtivoBasePlayer
         base.AtualizarEstado();
         if(Input.GetKeyDown(player.GetMapeadorDeBotoes.GetBotaoPulo))
         {
-            player.GetRigidbody2D.AddForce(new Vector2(0,player.GetForcaPulo),ForceMode2D.Impulse);
+            player.GetRigidbody2D.AddForce(new Vector2(0,player.GetForcaPulo+(player.GetInformacoesPlayer.getMilho?player.GetInformacoesPlayer.forcaPuloMilho:0)),ForceMode2D.Impulse);
             player.TrocaEstadoPlayer(new EstadoPuloPlayer());
             return;
         }
