@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - chao
+  - ColiderFantasma
   layers:
   - Default
   - TransparentFX
