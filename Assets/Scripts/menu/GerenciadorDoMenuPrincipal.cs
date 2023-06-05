@@ -59,4 +59,8 @@ public class GerenciadorDoMenuPrincipal : MonoBehaviour
             Debug.Log("Cena nao existe");
         }    
     }
+    public void FecharJogo()
+    {
+        Application.Quit();
+    }
 }
