@@ -23,7 +23,7 @@ public class EstadoPuloPlayer : EstadoNoArBasePlayer
         {
             foreach(RaycastHit2D r in player.GetRaycastsPulo)
             {
-                if(r.collider.tag!="Player" && r.collider.tag!="ColiderFantasma")
+                if(r.collider.tag!="Player" && r.collider.tag!="ColiderFantasma" && r.collider.tag!="Inimigo")
                 {
                     if(Input.GetAxisRaw(player.GetMapeadorDeBotoes.GetEixoDeMovimentoHorizontal)!=0)
                     {

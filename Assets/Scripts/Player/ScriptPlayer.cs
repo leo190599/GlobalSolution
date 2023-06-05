@@ -20,6 +20,7 @@ public class ScriptPlayer : MonoBehaviour
    
     public Vector2 centroColisaoHitEmRelacaoAoPlayer;
     public Vector2 dimensoesColisaoHit;
+    public AudioClip passos;
 
     [Header("Parametros Debug")]
     [SerializeField]
@@ -30,6 +31,7 @@ public class ScriptPlayer : MonoBehaviour
 
     private SpriteRenderer sprite;
     private List<RaycastHit2D>raycastsPulo;
+    public AudioSource emissor;
 
     [Header("Scriptable objects")]
     [SerializeField]

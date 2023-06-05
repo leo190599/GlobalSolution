@@ -12,6 +12,8 @@ public class MaquinaDeVendas : MonoBehaviour
     public InformacoesPlayer informacoesPlayer;
     public SpriteRenderer sprite;
     public Color corDesativada;
+    public AudioSource emissor;
+    public AudioClip clipCompra;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +32,9 @@ public class MaquinaDeVendas : MonoBehaviour
         jaUsada=true;
         gizmo.SetActive(false);
         sprite.color=corDesativada;
+        emissor.loop=false;
+        emissor.clip=clipCompra;
+        emissor.Play();
     }
     void OnTriggerEnter2D(Collider2D c)
     {
