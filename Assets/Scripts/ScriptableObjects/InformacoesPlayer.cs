@@ -26,18 +26,24 @@ public class InformacoesPlayer : ScriptableObject
     private float vidaAtual=100;
     [SerializeField]
     private bool refrigerante=false;
+    public float velRefrigerante=3;
     [SerializeField]
     private bool hamburger=false;
+    public float forcaHamburger=3;
     [SerializeField]
     private bool salgadinho=false;
+    public float forcaSalgadinho=3;
     [SerializeField]
     private bool bolo=false;
+    public float bonusPuloBolo=3;
+    public int alimentosNaoSaudaveisBase=0;
+    public int alimentosNaoSaudaveis=0;
 
     [Header("Status")]
     
     public float forcaBase=5;
 
-    public float forcaCochaDeFrango=8;
+    public float forcaCochaDeFrango=3;
     public float forca=5;
     public float defesaBase=5;
     public float defesaLaranja=8;
@@ -76,6 +82,7 @@ public class InformacoesPlayer : ScriptableObject
 
     public void ZerarAlimentos()
     {
+        alimentosNaoSaudaveis=alimentosNaoSaudaveisBase;
         batataDoce=false;
         coxaDeFrango=false;
         abacate=false;
@@ -109,7 +116,7 @@ public class InformacoesPlayer : ScriptableObject
             coxaDeFrango=novoValor;
             if(novoValor)
             {
-                forca=forcaCochaDeFrango;
+                forca+=forcaCochaDeFrango;
             }
             slots[indexSlot]=1;
             EventosAtualizacaoSlots.Invoke();
@@ -161,6 +168,10 @@ public class InformacoesPlayer : ScriptableObject
         {
             refrigerante=novoValor;
             slots[indexSlot]=5;
+            if(novoValor)
+            {
+                alimentosNaoSaudaveis++;
+            }
             EventosAtualizacaoSlots.Invoke();
             indexSlot++;
         }
@@ -171,6 +182,11 @@ public class InformacoesPlayer : ScriptableObject
         {
             hamburger=novoValor;
             slots[indexSlot]=6;
+            if(novoValor)
+            {
+                alimentosNaoSaudaveis++;
+                forca+=forcaHamburger;
+            }
             EventosAtualizacaoSlots.Invoke();
             indexSlot++;
         }   
@@ -181,6 +197,11 @@ public class InformacoesPlayer : ScriptableObject
         {
             salgadinho=novoValor;
             slots[indexSlot]=7;
+            if(novoValor)
+            {
+                forca+=forcaSalgadinho;
+                alimentosNaoSaudaveis++;
+            }
             EventosAtualizacaoSlots.Invoke();
             indexSlot++;
         }   
@@ -191,6 +212,10 @@ public class InformacoesPlayer : ScriptableObject
         {
             bolo=novoValor;
             slots[indexSlot]=8;
+            if(novoValor)
+            {
+                alimentosNaoSaudaveis++;
+            }
             EventosAtualizacaoSlots.Invoke();
             indexSlot++;
         }   
@@ -223,7 +248,7 @@ public class InformacoesPlayer : ScriptableObject
     }
     public void ReceberDano(float quantidadeDeDano)
     {
-        vidaAtual-=quantidadeDeDano;
+        vidaAtual-=((quantidadeDeDano-defesa)+alimentosNaoSaudaveis);
         if(EventosLevarDano!=null)
             {
                 EventosLevarDano.Invoke();

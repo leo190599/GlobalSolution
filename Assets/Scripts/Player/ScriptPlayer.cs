@@ -30,6 +30,7 @@ public class ScriptPlayer : MonoBehaviour
     [SerializeField]
 
     private SpriteRenderer sprite;
+    public LayerMask layerAtaque;
     private List<RaycastHit2D>raycastsPulo;
     public AudioSource emissor;
 
@@ -105,23 +106,12 @@ public class ScriptPlayer : MonoBehaviour
         }
         else if(controldadorDeCenaPlayer.getEstadoCena==ControladorDeCena.TipoEstadoCena.morreu)
         {
-            if(Input.GetKeyDown(mapeadorDeBotoes.GetBotaoPause))
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            }
+            //if(Input.GetKeyDown(mapeadorDeBotoes.GetBotaoPause))
+            //{
+              //  SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            //}
         }
-        //Mudar depois
-        
-        
-        if(Input.GetKeyDown(KeyCode.W))
-        {
-            informacoesPlayer.ReceberDano(10);
-        }
-        if(Input.GetKeyDown(KeyCode.E))
-        {
-            informacoesPlayer.Curar(10);
-        }
-        //Debug.Log(estadoPlayerAtual);
+      
     }
 
     void FixedUpdate()
@@ -168,12 +158,34 @@ public class ScriptPlayer : MonoBehaviour
 
     public void Atacar()
     {
-
+        
+         Collider2D atacado;
+        if(olhandoParaDireita)
+        {
+            atacado= Physics2D.OverlapBox(new Vector2(transform.position.x+centroColisaoHitEmRelacaoAoPlayer.x,transform.position.y+centroColisaoHitEmRelacaoAoPlayer.y),dimensoesColisaoHit,0,layerAtaque);
+            Debug.Log("a");
+        }
+        else
+        {
+            atacado= Physics2D.OverlapBox(new Vector2(transform.position.x-centroColisaoHitEmRelacaoAoPlayer.x,transform.position.y+centroColisaoHitEmRelacaoAoPlayer.y),dimensoesColisaoHit,0,layerAtaque);
+        }
+        if(atacado!=null)
+        {
+            
+             if(atacado.GetComponentInParent<InimigoScript>()!=null)
+             {
+                atacado.GetComponentInParent<InimigoScript>().ReceberDano(informacoesPlayer.forca);
+             }
+        }
     }
 
     public void Despausar()
     {
         controldadorDeCenaPlayer.TrocarEstadoAtual(ControladorDeCena.TipoEstadoCena.jogando);
+    }
+    public void ReiniciarCena()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public void VoltarAOMenuPrincipal()
     {
@@ -259,9 +271,14 @@ public class ScriptPlayer : MonoBehaviour
     {
         estadoPlayerAtual.EventoFinalAnimacao();
     }
+    public void pararRecebimentoDeDanoAnim()
+    {
+        anim.SetBool("RecebeuDano",false);   
+    }
 
     public void ReceberDano(float quantidadeDeDano)
     {
+        anim.SetBool("RecebeuDano",true);
         informacoesPlayer.ReceberDano(quantidadeDeDano);
     }
     public void Curar(float quantidadeDeCura)
@@ -273,6 +290,7 @@ public class ScriptPlayer : MonoBehaviour
     {
         rb.sharedMaterial=materialFisicoParado;
         rb.velocity=new Vector2(0,rb.velocity.y);
+        emissor.Stop();
         controldadorDeCenaPlayer.TrocarEstadoAtual(ControladorDeCena.TipoEstadoCena.morreu);
     }
 

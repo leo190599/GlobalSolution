@@ -14,7 +14,7 @@ public class EstadoAndandoPlayer : EstadoAtivoBasePlayer
 
 
          player.GetRigidbody2D.velocity=new Vector2(Input.GetAxis(player.GetMapeadorDeBotoes.GetEixoDeMovimentoHorizontal)*(player.GetVelocidadeDeMovimento+
-         (player.GetInformacoesPlayer.getBatataDoce ? player.GetInformacoesPlayer.bonusVelBatataDoce:0))
+         (player.GetInformacoesPlayer.getBatataDoce ? player.GetInformacoesPlayer.bonusVelBatataDoce:0)+(player.GetInformacoesPlayer.getRefrigerante?player.GetInformacoesPlayer.bonusVelBatataDoce:0))
          ,player.GetRigidbody2D.velocity.y);
         player.GetRigidbody2D.sharedMaterial=player.GetMaterialFisicoAndando;
     }
@@ -25,7 +25,7 @@ public class EstadoAndandoPlayer : EstadoAtivoBasePlayer
         {
             player.RodarPersonagem(Mathf.Sign(Input.GetAxisRaw(player.GetMapeadorDeBotoes.GetEixoDeMovimentoHorizontal))>0);
              player.GetRigidbody2D.velocity=new Vector2(Input.GetAxis(player.GetMapeadorDeBotoes.GetEixoDeMovimentoHorizontal)*(player.GetVelocidadeDeMovimento+
-         (player.GetInformacoesPlayer.getBatataDoce ? player.GetInformacoesPlayer.bonusVelBatataDoce:0))
+         (player.GetInformacoesPlayer.getBatataDoce ? player.GetInformacoesPlayer.bonusVelBatataDoce:0)+(player.GetInformacoesPlayer.getRefrigerante?player.GetInformacoesPlayer.bonusVelBatataDoce:0))
          ,player.GetRigidbody2D.velocity.y);
         }
         else
@@ -35,7 +35,8 @@ public class EstadoAndandoPlayer : EstadoAtivoBasePlayer
         }
         if(Input.GetKeyDown(player.GetMapeadorDeBotoes.GetBotaoPulo))
         {
-           player.GetRigidbody2D.AddForce(new Vector2(0,player.GetForcaPulo+(player.GetInformacoesPlayer.getMilho?player.GetInformacoesPlayer.forcaPuloMilho:0)),ForceMode2D.Impulse);
+           player.GetRigidbody2D.AddForce(new Vector2(0,player.GetForcaPulo+(player.GetInformacoesPlayer.getMilho?player.GetInformacoesPlayer.forcaPuloMilho:0)+
+           (player.GetInformacoesPlayer.getBolo?player.GetInformacoesPlayer.bonusPuloBolo:0)),ForceMode2D.Impulse);
             player.TrocaEstadoPlayer(new EstadoPuloPlayer());
             return;
         }

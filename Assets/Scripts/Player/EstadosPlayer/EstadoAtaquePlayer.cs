@@ -18,7 +18,7 @@ public class EstadoAtaquePlayer : EstadoAtivoBasePlayer
     public override void EventoAnimacao()
     {
         base.EventoAnimacao();
-        //Debug.Log("a");
+        player.Atacar();
     }
 
     public override void EventoFinalAnimacao()

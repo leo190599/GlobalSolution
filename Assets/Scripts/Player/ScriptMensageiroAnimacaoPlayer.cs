@@ -18,4 +18,8 @@ public class ScriptMensageiroAnimacaoPlayer : MonoBehaviour
     {
         scriptPlayer.AtivarEventoFinalAnimacao();
     }
+    public void pararRecebimentoDeDanoAnim()
+    {
+        scriptPlayer.pararRecebimentoDeDanoAnim();
+    }
 }
