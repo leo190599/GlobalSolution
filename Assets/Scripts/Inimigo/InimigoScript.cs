@@ -17,10 +17,10 @@ public class InimigoScript : MonoBehaviour
     public Collider2D areaDePatrulha;
     public bool olhandoParaADireita;
 
-    public static float vidaMaxima=10;
+    public float vidaMaxima=10;
     public float vida;
-    public static float ataque=10;
-    public static float defesa=5;
+    public float ataque=10;
+    public float defesa=5;
 
     public float distanciaParaAtaque=.5f;
     public float novaPosicaoX;
@@ -133,6 +133,7 @@ public class InimigoScript : MonoBehaviour
     {
         estado=estadoInimigo.perseguindo;
         Collider2D atacado;
+        //Debug.Log("a");
         if(olhandoParaADireita)
         {
             atacado= Physics2D.OverlapBox(new Vector2(transform.position.x+centroColisaoHitEmRelacaoAonInimigo.x,transform.position.y+centroColisaoHitEmRelacaoAonInimigo.y),dimensoesColisaoHit,0,layerAtaque);
@@ -141,6 +142,7 @@ public class InimigoScript : MonoBehaviour
         {
             atacado= Physics2D.OverlapBox(new Vector2(transform.position.x-centroColisaoHitEmRelacaoAonInimigo.x,transform.position.y+centroColisaoHitEmRelacaoAonInimigo.y),dimensoesColisaoHit,0,layerAtaque);
         }
+        
         if(atacado!=null)
         {
              if(atacado.GetComponentInParent<ScriptPlayer>()!=null)
@@ -156,8 +158,14 @@ public class InimigoScript : MonoBehaviour
         vida-=(quantidadeDeDano-defesa);
         if(vida<=0)
         {
+            EventoChefe();
             Destroy(transform.parent.gameObject);
         }
+    }
+
+    public virtual void EventoChefe()
+    {
+
     }
 
     public void pararRecebimentoDeDanoAnim()

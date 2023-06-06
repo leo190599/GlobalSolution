@@ -14,24 +14,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   batataDoce: 0
   bonusVelBatataDoce: 2
-  coxaDeFrango: 0
-  abacate: 0
-  laranja: 0
+  coxaDeFrango: 1
+  abacate: 1
+  laranja: 1
   milho: 0
-  forcaPuloMilho: 10
-  vidaMaxima: 100
-  vidaAtual: 95
+  forcaPuloMilho: 3
+  vidaMaxima: 150
+  vidaAtual: 33
   refrigerante: 0
-  hamburger: 0
-  salgadinho: 0
+  velRefrigerante: 3
+  hamburger: 1
+  forcaHamburger: 2
+  salgadinho: 1
+  forcaSalgadinho: 2
   bolo: 0
+  bonusPuloBolo: 3
+  alimentosNaoSaudaveisBase: 0
+  alimentosNaoSaudaveis: 2
   forcaBase: 8
-  forcaCochaDeFrango: 12
-  forca: 8
+  forcaCochaDeFrango: 2
+  forca: 14
   defesaBase: 5
-  defesaLaranja: 8
-  defesa: 5
+  defesaLaranja: 2
+  defesa: 2
   vidaBase: 100
   vidaIncrementada: 150
-  indexSlot: 0
-  slots: ffffffffffffffffffffffffffffffffffffffff
+  indexSlot: 5
+  slots: 0100000006000000070000000300000002000000

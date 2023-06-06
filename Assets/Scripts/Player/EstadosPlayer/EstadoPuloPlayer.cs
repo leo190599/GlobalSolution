@@ -7,6 +7,7 @@ public class EstadoPuloPlayer : EstadoNoArBasePlayer
     public override void IniciarEstadoPlayer(ScriptPlayer player)
     {
         base.IniciarEstadoPlayer(player);
+        //player.GetRigidbody2D.sharedMaterial=player.GetMaterialFisicoParado;
         player.trocarEstadoAnimator(ScriptPlayer.estadoAnimator.caindo);
     }
     public override void AtualizarEstadoFixado()
@@ -14,6 +15,7 @@ public class EstadoPuloPlayer : EstadoNoArBasePlayer
         base.AtualizarEstadoFixado();
         if(Mathf.Abs(player.GetRigidbody2D.velocity.x+Mathf.Lerp(Input.GetAxis(player.GetMapeadorDeBotoes.GetEixoDeMovimentoHorizontal)*player.GetVelocidadeDeMovimento,0,player.GetPerdaDeMovimentoNoAr))<player.GetVelocidadeDeMovimento)
         {
+           // Debug.Log("a");
             player.GetRigidbody2D.AddForce(new Vector2(
             Mathf.Lerp(Input.GetAxis(player.GetMapeadorDeBotoes.GetEixoDeMovimentoHorizontal)*player.GetVelocidadeDeMovimento,0,player.GetPerdaDeMovimentoNoAr),0));
         }
