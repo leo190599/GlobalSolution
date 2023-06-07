@@ -32,6 +32,7 @@ public class ScriptPlayer : MonoBehaviour
     private SpriteRenderer sprite;
     public LayerMask layerAtaque;
     private List<RaycastHit2D>raycastsPulo;
+    public AudioSource emissorRecebeuDano;
     public AudioSource emissor;
 
     [Header("Scriptable objects")]
@@ -279,6 +280,7 @@ public class ScriptPlayer : MonoBehaviour
     public void ReceberDano(float quantidadeDeDano)
     {
         anim.SetBool("RecebeuDano",true);
+        emissorRecebeuDano.Play();
         informacoesPlayer.ReceberDano(quantidadeDeDano);
     }
     public void Curar(float quantidadeDeCura)

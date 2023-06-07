@@ -30,6 +30,7 @@ public class InimigoScript : MonoBehaviour
     public Vector2 dimensoesColisaoHit;
     public LayerMask layerAtaque;
     public SpriteRenderer sprite;
+    public AudioSource somHit;
     // Start is called before the first frame update
     void Start()
     {
@@ -156,6 +157,7 @@ public class InimigoScript : MonoBehaviour
     {
         anim.SetBool("RecebeuDano",true);
         vida-=(quantidadeDeDano-defesa);
+        somHit.Play();
         if(vida<=0)
         {
             EventoChefe();
